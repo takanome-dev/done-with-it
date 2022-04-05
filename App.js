@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import { AccountScreen } from "./app/screen";
+import "react-native-gesture-handler";
+import { MessagesScreen } from "./app/screen";
 
 export default function App() {
-	return <AccountScreen />;
+	return <MessagesScreen />;
 }
 
 const styles = StyleSheet.create({});

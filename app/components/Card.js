@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.white,
 		borderRadius: 15,
 		overflow: "hidden",
+		marginBottom: 20,
 	},
 	detailsContainer: {
 		padding: 20,

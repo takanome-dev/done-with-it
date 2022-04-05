@@ -7,7 +7,7 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import ListItemSeparator from "../components/ListItemSeparator";
 
-const listings = [
+const menuItems = [
 	{
 		title: "My Listing",
 		icon: {
@@ -36,7 +36,7 @@ export default function AccountScreen() {
 			</View>
 			<View style={styles.container}>
 				<FlatList
-					data={listings}
+					data={menuItems}
 					keyExtractor={(l) => l.title}
 					renderItem={({ item }) => (
 						<ListItem
