@@ -1,19 +1,11 @@
-import { StyleSheet, Text, Platform } from "react-native";
+import { Text } from "react-native";
 import React from "react";
-import colors from "../config/colors";
+import defaultStyles from "../config/defaultStyles";
 
 export default function AppText({ children, style, numberOfLines }) {
 	return (
-		<Text style={[styles.text, style]} numberOfLines={numberOfLines}>
+		<Text style={[defaultStyles.text, style]} numberOfLines={numberOfLines}>
 			{children}
 		</Text>
 	);
 }
-
-const styles = StyleSheet.create({
-	text: {
-		fontSize: 20,
-		fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-		color: colors.black,
-	},
-});
