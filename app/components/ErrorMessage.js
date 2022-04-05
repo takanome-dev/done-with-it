@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Text from "./Text";
 import colors from "../config/colors";
@@ -10,7 +10,11 @@ export default function ErrorMessage({ error, visible }) {
 
 	return (
 		<View style={styles.container}>
-			<MaterialIcons name="error" size={30} color={colors.danger} />
+			<MaterialCommunityIcons
+				name="alert-circle"
+				size={30}
+				color={colors.danger}
+			/>
 			<Text style={styles.error}>{error}</Text>
 		</View>
 	);
