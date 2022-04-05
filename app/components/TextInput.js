@@ -16,7 +16,7 @@ export default function AppTextInput({ icon, ...props }) {
 					color={colors.medium}
 				/>
 			)}
-			<TextInput style={defaultStyles.text} {...props} />
+			<TextInput style={[defaultStyles.text, { width: "100%" }]} {...props} />
 		</View>
 	);
 }
