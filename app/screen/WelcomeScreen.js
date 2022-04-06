@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 	},
 	logoContainer: {
 		position: "absolute",
-		top: 50,
+		top: 80,
 	},
 	logo: {
 		width: 100,

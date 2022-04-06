@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 		justifyContent: "center",
 		alignItems: "center",
+		elevation: 3,
 	},
 	text: {
 		color: colors.white,

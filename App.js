@@ -2,10 +2,10 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import "react-native-gesture-handler";
 
-import { RegisterScreen } from "./app/screen";
+import { WelcomeScreen } from "./app/screen";
 
 export default function App() {
-	return <RegisterScreen />;
+	return <WelcomeScreen />;
 }
 
 const styles = StyleSheet.create({});

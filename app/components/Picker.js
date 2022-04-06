@@ -12,10 +12,18 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import Text from "../components/Text";
 import PickerItem from "./PickerItem";
+import Button from "./Button";
 
-export default function Picker({ icon, placeholder, items }) {
+export default function Picker({
+	icon,
+	items,
+	PickerItemComponent = PickerItem,
+	placeholder,
+	numberOfColumns = 1,
+	selectedItem,
+	onSelectedItem,
+}) {
 	const [isVisible, setIsVisible] = useState(false);
-	const [selectedItem, setSelectedItem] = useState(items[0].label);
 
 	return (
 		<>
@@ -29,11 +37,11 @@ export default function Picker({ icon, placeholder, items }) {
 							color={colors.medium}
 						/>
 					)}
-					{/* {selectedItem ? ( */}
-					<Text style={styles.text}>{selectedItem}</Text>
-					{/* ) : (
-						<Text style={styles.text}>{placeholder}</Text>
-					)} */}
+					{selectedItem ? (
+						<Text style={styles.text}>{selectedItem}</Text>
+					) : (
+						<Text style={styles.placeholder}>{placeholder}</Text>
+					)}
 					<MaterialCommunityIcons
 						name="chevron-down"
 						size={30}
@@ -42,25 +50,25 @@ export default function Picker({ icon, placeholder, items }) {
 				</View>
 			</TouchableWithoutFeedback>
 			<Modal animationType="slide" visible={isVisible}>
-				<Pressable
-					onPress={() => setIsVisible(!isVisible)}
-					style={styles.closeButton}
-				>
-					<Text style={{ color: colors.white }}>Close</Text>
-				</Pressable>
-				<View style={styles.pickerItemContainer}>
+				<View style={styles.modalCOntainer}>
+					<Button
+						title="Close"
+						onPress={() => setIsVisible(!isVisible)}
+						color="secondary"
+					/>
 					<FlatList
 						data={items}
 						keyExtractor={(i) => i.value.toString()}
 						renderItem={({ item }) => (
-							<PickerItem
-								label={item.label}
+							<PickerItemComponent
+								item={item}
 								onPress={() => {
-									setSelectedItem(item.label);
+									onSelectedItem(item.label);
 									setIsVisible(!isVisible);
 								}}
 							/>
 						)}
+						numColumns={numberOfColumns}
 					/>
 				</View>
 			</Modal>
@@ -81,19 +89,14 @@ const styles = StyleSheet.create({
 	icon: {
 		marginRight: 10,
 	},
-	text: {
+	modalCOntainer: {
+		margin: 10,
+	},
+	placeholder: {
+		color: colors.medium,
 		flex: 1,
 	},
-	closeButton: {
-		backgroundColor: colors.secondary,
-		padding: 15,
-		margin: 10,
-		borderRadius: 10,
-		justifyContent: "center",
-		alignItems: "center",
-		elevation: 5,
-	},
-	pickerItemContainer: {
-		margin: 20,
+	text: {
+		flex: 1,
 	},
 });
