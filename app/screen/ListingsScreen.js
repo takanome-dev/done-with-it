@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, FlatList } from "react-native";
 
-import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
+import Screen from "../components/Screen";
 
 const initialListings = [
 	{

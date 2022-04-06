@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import TextInput from "../components/TextInput";
-import Button from "../components/Button";
-import Picker from "../components/Picker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
-import FormField from "../components/FormField";
-import Form from "../components/Form";
-import FormPicker from "../components/FormPicker";
+import { Form, FormField, FormPicker } from "../components/forms";
 import SubmitButton from "../components/SubmitButton";
 
 const categories = [
