@@ -38,7 +38,7 @@ export default function Picker({
 						/>
 					)}
 					{selectedItem ? (
-						<Text style={styles.text}>{selectedItem}</Text>
+						<Text style={styles.text}>{selectedItem.label}</Text>
 					) : (
 						<Text style={styles.placeholder}>{placeholder}</Text>
 					)}
@@ -63,7 +63,7 @@ export default function Picker({
 							<PickerItemComponent
 								item={item}
 								onPress={() => {
-									onSelectedItem(item.label);
+									onSelectedItem(item);
 									setIsVisible(!isVisible);
 								}}
 							/>
