@@ -1,10 +1,11 @@
-import ListImageInput from "./app/components/ListImageInput";
-import Screen from "./app/components/Screen";
-import { useState } from "react";
-import { Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
-import { ListingEditScreen } from "./app/screen";
+import { AppNavigator, theme } from "./app/navigation";
 
 export default function App() {
-	return <ListingEditScreen />;
+	return (
+		<NavigationContainer theme={theme}>
+			<AppNavigator />
+		</NavigationContainer>
+	);
 }

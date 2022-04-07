@@ -4,6 +4,7 @@ import { StyleSheet, FlatList } from "react-native";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import Screen from "../components/Screen";
+import { routes } from "../navigation";
 
 const initialListings = [
 	{
@@ -20,7 +21,7 @@ const initialListings = [
 	},
 ];
 
-export default function ListingsScreen() {
+export default function ListingsScreen({ navigation }) {
 	const [refresh, setRefresh] = useState(false);
 	const [listings, setListings] = useState(initialListings);
 
@@ -30,19 +31,24 @@ export default function ListingsScreen() {
 				data={listings}
 				keyExtractor={(l) => l.id.toString()}
 				renderItem={({ item }) => (
-					<Card title={item.title} subTitle={item.price} image={item.image} />
+					<Card
+						title={item.title}
+						subTitle={item.price}
+						image={item.image}
+						onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+					/>
 				)}
-				refreshing={refresh}
-				onRefresh={() =>
-					setListings([
-						{
-							id: 2,
-							title: "Couch in great condition",
-							price: "$800",
-							image: require("../assets/couch.jpg"),
-						},
-					])
-				}
+				// refreshing={refresh}
+				// onRefresh={() =>
+				// 	setListings([
+				// 		{
+				// 			id: 2,
+				// 			title: "Couch in great condition",
+				// 			price: "$800",
+				// 			image: require("../assets/couch.jpg"),
+				// 		},
+				// 	])
+				// }
 			/>
 		</Screen>
 	);
