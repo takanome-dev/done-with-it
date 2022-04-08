@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as Location from "expo-location";
 
 export default function useLocation() {
-	const [location, setLocation] = useState();
+	const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
 
 	const requestLocation = async () => {
 		const { granted } = await Location.requestForegroundPermissionsAsync();

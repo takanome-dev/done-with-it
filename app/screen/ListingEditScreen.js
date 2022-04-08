@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+
 import * as Yup from "yup";
 import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
@@ -94,12 +95,12 @@ export default function ListingEditScreen() {
 				onSubmit={(values) => console.log({ values, location })}
 			>
 				<FormImagePicker name="images" />
-				<FormField maxLength={255} name="title" placeholder="Title" />
 				<FormField
 					maxLength={8}
 					name="price"
 					keyboardType="numeric"
 					placeholder="Price"
+					width={120}
 				/>
 				<FormPicker
 					items={categories}
@@ -107,7 +108,9 @@ export default function ListingEditScreen() {
 					PickerItemComponent={CategoryPickerItem}
 					placeholder="Category"
 					numberOfColumns={3}
+					width="60%"
 				/>
+				<FormField maxLength={255} name="title" placeholder="Title" />
 				<FormField
 					maxLength={255}
 					multiline

@@ -10,6 +10,7 @@ export default function FormPicker({
 	numberOfColumns,
 	PickerItemComponent,
 	placeholder,
+	width,
 }) {
 	const { errors, setFieldValue, touched, values } = useFormikContext();
 
@@ -22,6 +23,7 @@ export default function FormPicker({
 				PickerItemComponent={PickerItemComponent}
 				placeholder={placeholder}
 				selectedItem={values[name]}
+				width={width}
 			/>
 			<ErrorMessage error={errors[name]} visible={touched[name]} />
 		</>

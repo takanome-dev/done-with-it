@@ -22,13 +22,14 @@ export default function Picker({
 	numberOfColumns = 1,
 	selectedItem,
 	onSelectedItem,
+	width = "100%",
 }) {
 	const [isVisible, setIsVisible] = useState(false);
 
 	return (
 		<>
 			<TouchableWithoutFeedback onPress={() => setIsVisible(!isVisible)}>
-				<View style={styles.container}>
+				<View style={[styles.container, { width }]}>
 					{icon && (
 						<MaterialCommunityIcons
 							style={styles.icon}
@@ -84,7 +85,6 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		padding: 15,
 		marginVertical: 10,
-		width: "100%",
 	},
 	icon: {
 		marginRight: 10,
