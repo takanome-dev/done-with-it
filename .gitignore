@@ -2,6 +2,7 @@ node_modules/
 .expo/
 dist/
 .dccache
+.env
 npm-debug.*
 *.jks
 *.p8
