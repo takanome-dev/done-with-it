@@ -27,9 +27,12 @@ const messagesSchema = {
 	message: Joi.string().required(),
 };
 
+const pushTokenSchema = { token: Joi.string().required() };
+
 module.exports = {
 	authSchema,
 	registerSchema,
 	listingsSchema,
 	messagesSchema,
+	pushTokenSchema,
 };
