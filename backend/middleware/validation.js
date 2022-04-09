@@ -1,6 +1,7 @@
 const Joi = require("joi");
+const store = require("../store/categories");
 
-const validate = (schema) => (req, res, next) => {
+const validateSchema = (schema) => (req, res, next) => {
 	const result = Joi.validate(req.body, schema);
 
 	if (result.error)
@@ -9,6 +10,15 @@ const validate = (schema) => (req, res, next) => {
 	return next();
 };
 
+const validateCategoryId = async (req, res, next) => {
+	const category = await store.getCategory(parseInt(req.body.categoryId));
+
+	if (!category) return res.status(400).send({ error: "Invalid categoryId." });
+
+	next();
+};
+
 module.exports = {
-	validate,
+	validateSchema,
+	validateCategoryId,
 };

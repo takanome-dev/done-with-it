@@ -11,7 +11,19 @@ const registerSchema = {
 	password: Joi.string().required().min(8),
 };
 
+const listingsSchema = {
+	title: Joi.string().required(),
+	description: Joi.string().allow(""),
+	price: Joi.number().required().min(1),
+	categoryId: Joi.number().required().min(1),
+	location: Joi.object({
+		latitude: Joi.number().required(),
+		longitude: Joi.number().required(),
+	}).optional(),
+};
+
 module.exports = {
 	authSchema,
 	registerSchema,
+	listingsSchema,
 };

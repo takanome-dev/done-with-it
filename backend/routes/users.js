@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const store = require("../store/users");
-const listingsStore = require("../store/listings");
-const validation = require("../middleware/validation");
-const schemas = require("../helpers/schemas");
+
 const auth = require("../middleware/auth");
+const listingsStore = require("../store/listings");
+const store = require("../store/users");
+const schemas = require("../helpers/schemas");
+const validation = require("../middleware/validation");
 
 router.get("/", auth.requireAdmin, async (req, res) => {
 	const users = await store.getUsers();
@@ -28,7 +29,7 @@ router.get("/:id", auth.requireAdmin, async (req, res) => {
 
 router.post(
 	"/",
-	validation.validate(schemas.registerSchema),
+	validation.validateSchema(schemas.registerSchema),
 	async (req, res) => {
 		const { name, email, password } = req.body;
 
@@ -36,7 +37,7 @@ router.post(
 		if (emailExist)
 			return res
 				.status(400)
-				.send({ error: "A user with the given email already exists." });
+				.json({ error: "A user with the given email already exists." });
 
 		const user = { name, email, password };
 		await store.addUser(user);
