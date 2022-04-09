@@ -11,10 +11,10 @@ export default function ListingDetailsScreen({ route }) {
 
 	return (
 		<Screen>
-			<Image style={styles.image} source={listing.image} />
+			<Image style={styles.image} source={{ uri: listing.images[0].url }} />
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title}>{listing.title}</Text>
-				<Text style={styles.price}>{listing.price}</Text>
+				<Text style={styles.price}>${listing.price}</Text>
 				<View style={styles.userContainer}>
 					<ListItem
 						title="Takanome Dev"
