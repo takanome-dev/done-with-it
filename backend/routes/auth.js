@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 const schemas = require("../helpers/schemas");
 const helpers = require("../helpers/auth");
-const usersStore = require("../store/users");
+const store = require("../store/users");
 const validation = require("../middleware/validation");
 
-router.post("/", validation.validate(schemas.userSchema), (req, res) => {
+router.post("/", validation.validate(schemas.userSchema), async (req, res) => {
 	const { email, password } = req.body;
-	const user = usersStore.getUserByEmail(email);
+	const user = await store.getUserByEmail(email);
 	if (!user || user.password !== password)
-		return res.status(400).send({ error: "Invalid email or password." });
+		return res.status(400).json({ error: "Invalid email or password." });
 
 	const token = helpers.generateToken(user);
-	res.send(token);
+	return res.json(token);
 });
 
 module.exports = router;
