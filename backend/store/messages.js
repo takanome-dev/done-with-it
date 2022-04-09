@@ -33,10 +33,12 @@ const getMessagesForUser = (toUserId) =>
 		return resolve(userMessages);
 	});
 
-const add = (message) => {
-	message.id = messages.length + 1;
-	message.dateTime = Date.now();
-	messages.push(message);
-};
+const addMessage = (message) =>
+	new Promise((resolve, reject) => {
+		message.id = messages.length + 1;
+		message.dateTime = Date.now();
+		messages.push(message);
+		return resolve();
+	});
 
-module.exports = { add, getMessagesForUser };
+module.exports = { addMessage, getMessagesForUser };

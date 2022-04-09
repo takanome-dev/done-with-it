@@ -20,6 +20,13 @@ router.get("/", async (req, res) => {
 	return res.json(resources);
 });
 
+router.get("/:id", auth.requireAuth, async (req, res) => {
+	const listing = await store.getListing(parseInt(req.params.id));
+	if (!listing) return res.status(404).json("No listing was found");
+	const resource = listingMapper(listing);
+	return res.json(resource);
+});
+
 router.post(
 	"/",
 	[

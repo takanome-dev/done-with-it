@@ -22,8 +22,14 @@ const listingsSchema = {
 	}).optional(),
 };
 
+const messagesSchema = {
+	listingId: Joi.number().required(),
+	message: Joi.string().required(),
+};
+
 module.exports = {
 	authSchema,
 	registerSchema,
 	listingsSchema,
+	messagesSchema,
 };
