@@ -6,6 +6,7 @@ import Icon from "../components/Icon";
 import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
 import Screen from "../components/Screen";
+import useAuth from "../hooks/useAuth";
 
 const menuItems = [
 	{
@@ -26,12 +27,14 @@ const menuItems = [
 ];
 
 export default function AccountScreen({ navigation }) {
+	const { user, logOut } = useAuth();
+
 	return (
 		<Screen style={styles.screen}>
 			<View style={styles.container}>
 				<ListItem
-					title="Takanome Dev"
-					subTitle="takanomedev221@gmail.com"
+					title={user.name}
+					subTitle={user.email}
 					image={require("../assets/takanome.png")}
 				/>
 			</View>
@@ -57,6 +60,7 @@ export default function AccountScreen({ navigation }) {
 			<ListItem
 				title="Log Out"
 				IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+				onPress={logOut}
 			/>
 		</Screen>
 	);

@@ -20,27 +20,29 @@ export default function ListingsScreen({ navigation }) {
 	} = useQuery(listingsApi.getListings);
 
 	return (
-		<Screen style={styles.screen}>
-			{error && (
-				<View>
-					<Text>Couldn't get the listings.</Text>
-					<Button title="Retry" onPress={loadListings} />
-				</View>
-			)}
+		<>
 			<ActivityIndicator visible={loading} />
-			<FlatList
-				data={listings}
-				keyExtractor={(l) => l.id.toString()}
-				renderItem={({ item }) => (
-					<Card
-						title={item.title}
-						subTitle={`$${item.price}`}
-						imageUrl={item.images[0].url}
-						onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-					/>
+			<Screen style={styles.screen}>
+				{error && (
+					<View>
+						<Text>Couldn't get the listings.</Text>
+						<Button title="Retry" onPress={loadListings} />
+					</View>
 				)}
-			/>
-		</Screen>
+				<FlatList
+					data={listings}
+					keyExtractor={(l) => l.id.toString()}
+					renderItem={({ item }) => (
+						<Card
+							title={item.title}
+							subTitle={`$${item.price}`}
+							imageUrl={item.images[0].url}
+							onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+						/>
+					)}
+				/>
+			</Screen>
+		</>
 	);
 }
 

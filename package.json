@@ -3,9 +3,7 @@
 	"version": "1.0.0",
 	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
-		"client": "expo start",
-		"server": "yarn start --prefix backend",
-		"dev": "concurrently \"yarn run server\" \"yarn run client\"",
+		"start": "expo start",
 		"android": "expo start --android",
 		"ios": "expo start --ios",
 		"web": "expo start --web",
@@ -25,6 +23,7 @@
 		"expo-secure-store": "~11.1.0",
 		"expo-status-bar": "~1.2.0",
 		"formik": "^2.2.9",
+		"jwt-decode": "^3.1.2",
 		"lottie-react-native": "5.0.1",
 		"moment": "^2.29.2",
 		"react": "17.0.1",

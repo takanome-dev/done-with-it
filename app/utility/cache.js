@@ -15,6 +15,14 @@ const store = async (key, value) => {
 	}
 };
 
+const remove = async () => {
+	try {
+		await AsyncStorage.removeItem(key);
+	} catch (error) {
+		console.log({ error });
+	}
+};
+
 const isExpired = (item) => {
 	const now = moment(Date.now());
 	const storedTime = moment(item.timestamp);
@@ -29,7 +37,7 @@ const get = async (key) => {
 		if (!item) return null;
 
 		if (isExpired(item)) {
-			await AsyncStorage.removeItem(key);
+			remove();
 			return null;
 		}
 
@@ -42,4 +50,5 @@ const get = async (key) => {
 export default {
 	store,
 	get,
+	remove,
 };
