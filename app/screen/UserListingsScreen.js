@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
 	screen: {
 		backgroundColor: colors.light,
 		padding: 20,
-		marginTop: -35,
+		// marginTop: -35,
 	},
 });

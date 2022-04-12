@@ -32,7 +32,7 @@ export default function AccountScreen({ navigation }) {
 
 	return (
 		<Screen style={styles.screen}>
-			<View style={styles.container}>
+			<View style={[styles.listItemContainer, { marginVertical: 30 }]}>
 				<ListItem
 					title={user.name}
 					subTitle={user.email}
@@ -44,25 +44,29 @@ export default function AccountScreen({ navigation }) {
 					data={menuItems}
 					keyExtractor={(l) => l.title}
 					renderItem={({ item }) => (
-						<ListItem
-							title={item.title}
-							IconComponent={
-								<Icon
-									name={item.icon.name}
-									backgroundColor={item.icon.backgroundColor}
-								/>
-							}
-							onPress={() => navigation.navigate(item.targetScreen)}
-						/>
+						<View style={styles.listItemContainer}>
+							<ListItem
+								title={item.title}
+								IconComponent={
+									<Icon
+										name={item.icon.name}
+										backgroundColor={item.icon.backgroundColor}
+									/>
+								}
+								onPress={() => navigation.navigate(item.targetScreen)}
+							/>
+						</View>
 					)}
 					ItemSeparatorComponent={ListItemSeparator}
 				/>
 			</View>
-			<ListItem
-				title="Log Out"
-				IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-				onPress={logOut}
-			/>
+			<View style={[styles.listItemContainer, { marginTop: 30 }]}>
+				<ListItem
+					title="Log Out"
+					IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+					onPress={logOut}
+				/>
+			</View>
 		</Screen>
 	);
 }
@@ -72,6 +76,10 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.light,
 	},
 	container: {
-		marginVertical: 20,
+		// marginVertical: 20,
+	},
+	listItemContainer: {
+		padding: 20,
+		backgroundColor: colors.white,
 	},
 });

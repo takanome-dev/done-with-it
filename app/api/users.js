@@ -1,7 +1,12 @@
 import apiClient from "./client";
 
-const register = (userInfo) => apiClient.post("/users", userInfo);
+const endpoint = "/users";
+
+const register = (userInfo) => apiClient.post(endpoint, userInfo);
+
+const getUser = (id) => apiClient.get(`${endpoint}/${id}`);
 
 export default {
 	register,
+	getUser,
 };

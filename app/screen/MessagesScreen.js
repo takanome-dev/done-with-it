@@ -41,6 +41,6 @@ export default function MessagesScreen({ renderRightActions }) {
 const styles = StyleSheet.create({
 	screen: {
 		backgroundColor: colors.light,
-		marginTop: -40,
+		// marginTop: -40,
 	},
 });
