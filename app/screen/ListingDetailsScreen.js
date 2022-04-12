@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
 	Alert,
 	Image,
-	KeyboardAvoidingView,
 	Platform,
 	ScrollView,
 	StyleSheet,
@@ -13,9 +12,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import ContactSellerForm from "../components/ContactSellerForm";
 import ListItem from "../components/ListItem";
+import Map from "../components/Map";
 import Text from "../components/Text";
 import usersApi from "../api/users";
-import Screen from "../components/Screen";
 
 export default function ListingDetailsScreen({ navigation, route }) {
 	const [userListing, setUserListing] = useState({
@@ -61,15 +60,17 @@ export default function ListingDetailsScreen({ navigation, route }) {
 				<View style={styles.detailsContainer}>
 					<Text style={styles.title}>{listing.title}</Text>
 					<Text style={styles.price}>${listing.price}</Text>
-					<View style={styles.listItemContainer}>
-						<ListItem
-							title={userListing.name}
-							subTitle={`${userListing.numberOfListings} listings`}
-							image={require("../assets/takanome.png")}
-						/>
-					</View>
+					<ListItem
+						title={userListing.name}
+						subTitle={`${userListing.numberOfListings} listings`}
+						image={require("../assets/takanome.png")}
+					/>
 					<ContactSellerForm listing={listing} />
 				</View>
+				<Map
+					latitude={listing.location.latitude}
+					longitude={listing.location.longitude}
+				/>
 			</ScrollView>
 		</>
 		// </KeyboardAvoidingView>
@@ -89,9 +90,6 @@ const styles = StyleSheet.create({
 	image: {
 		width: "100%",
 		height: 300,
-	},
-	listItemContainer: {
-		paddingVertical: 10,
 	},
 	price: {
 		marginVertical: 10,
