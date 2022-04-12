@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-
 import * as Yup from "yup";
-import Screen from "../components/Screen";
+
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import {
 	Form,
@@ -10,9 +9,10 @@ import {
 	FormPicker,
 	FormImagePicker,
 } from "../components/forms";
+import listingsApi from "../api/listings";
+import Screen from "../components/Screen";
 import SubmitButton from "../components/SubmitButton";
 import useLocation from "../hooks/useLocation";
-import listingsApi from "../api/listings";
 import UploadScreen from "./UploadScreen";
 
 const categories = [
@@ -121,27 +121,35 @@ export default function ListingEditScreen() {
 			>
 				<FormImagePicker name="images" />
 				<FormField
+					maxLength={255}
+					name="title"
+					placeholder="Title"
+					icon="pencil-outline"
+				/>
+				<FormField
 					maxLength={8}
 					name="price"
 					keyboardType="numeric"
 					placeholder="Price"
 					width={120}
+					icon="bitcoin"
 				/>
 				<FormPicker
 					items={categories}
+					icon="apps"
 					name="category"
 					PickerItemComponent={CategoryPickerItem}
 					placeholder="Category"
 					numberOfColumns={3}
 					width="60%"
 				/>
-				<FormField maxLength={255} name="title" placeholder="Title" />
 				<FormField
 					maxLength={255}
 					multiline
 					numberOfLines={3}
 					name="description"
 					placeholder="Description"
+					icon="note-text-outline"
 				/>
 				<SubmitButton title="Post" />
 			</Form>

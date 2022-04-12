@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 
 import ActivityIndicator from "../components/ActivityIndicator";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import colors from "../config/colors";
-import FilterListings from "../components/FilterListings";
 import listingsApi from "../api/listings";
 import routes from "../navigation/routes";
 import Screen from "../components/Screen";
@@ -13,19 +12,12 @@ import Text from "../components/Text";
 import useQuery from "../hooks/useQuery";
 
 export default function ListingsScreen({ navigation }) {
-	const [selectedItem, setSelectedItem] = useState({ id: "", name: "" });
 	const {
-		data,
+		data: listings,
 		loading,
 		error,
 		request: loadListings,
-	} = useQuery(listingsApi.getListings);
-
-	let listings = [];
-
-	if (selectedItem?.id)
-		listings = data.filter((l) => l.categoryId === selectedItem.id);
-	else listings = data;
+	} = useQuery(listingsApi.getUserListings);
 
 	return (
 		<>
@@ -37,10 +29,6 @@ export default function ListingsScreen({ navigation }) {
 						<Button title="Retry" onPress={loadListings} />
 					</View>
 				)}
-				<FilterListings
-					selectedItem={selectedItem}
-					onSelectedItem={(item) => setSelectedItem(item)}
-				/>
 				<FlatList
 					data={listings}
 					keyExtractor={(l) => l.id.toString()}
@@ -64,5 +52,6 @@ const styles = StyleSheet.create({
 	screen: {
 		backgroundColor: colors.light,
 		padding: 20,
+		marginTop: -35,
 	},
 });

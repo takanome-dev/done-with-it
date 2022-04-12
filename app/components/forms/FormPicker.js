@@ -6,6 +6,7 @@ import ErrorMessage from "../ErrorMessage";
 
 export default function FormPicker({
 	items,
+	icon,
 	name,
 	numberOfColumns,
 	PickerItemComponent,
@@ -18,6 +19,7 @@ export default function FormPicker({
 		<>
 			<Picker
 				items={items}
+				icon={icon}
 				onSelectedItem={(item) => setFieldValue(name, item)}
 				numberOfColumns={numberOfColumns}
 				PickerItemComponent={PickerItemComponent}

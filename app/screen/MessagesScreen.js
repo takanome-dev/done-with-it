@@ -4,61 +4,43 @@ import { StyleSheet, FlatList, View } from "react-native";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
+import messagesApi from "../api/messages";
 import Screen from "../components/Screen";
-
-const initialMessages = [
-	{
-		id: 1,
-		title: "Takanome",
-		subTitle: "Lorem Ipsum Lorem Ipsum ",
-		image: require("../assets/takanome.png"),
-	},
-	{
-		id: 2,
-		title: "Takanome",
-		subTitle: "Lorem Ipsum Lorem Ipsum",
-		image: require("../assets/takanome.png"),
-	},
-];
+import useQuery from "../hooks/useQuery";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 export default function MessagesScreen({ renderRightActions }) {
-	const [messages, setMessages] = useState(initialMessages);
 	const [refresh, setRefresh] = useState(false);
+	const { data: messages, loading } = useQuery(messagesApi.getMessages);
 
 	return (
-		<Screen style={styles.screen}>
-			<FlatList
-				data={messages}
-				keyExtractor={(m) => m.id.toString()}
-				renderItem={({ item }) => (
-					<ListItem
-						title={item.title}
-						subTitle={item.subTitle}
-						image={item.image}
-						renderRightActions={() => (
-							<View style={{ backgroundColor: "red", width: 70 }}></View>
-						)}
-					/>
-				)}
-				ItemSeparatorComponent={ListItemSeparator}
-				refreshing={refresh}
-				onRefresh={() =>
-					setMessages([
-						{
-							id: 2,
-							title: "Takanome ",
-							subTitle: "Lorem Ipsum Lorem Ipsum",
-							image: require("../assets/takanome.png"),
-						},
-					])
-				}
-			/>
-		</Screen>
+		<>
+			<ActivityIndicator visible={loading} />
+			<Screen style={styles.screen}>
+				<FlatList
+					data={messages}
+					keyExtractor={(m) => m.id.toString()}
+					renderItem={({ item }) => (
+						<ListItem
+							title={item.fromUser.name}
+							subTitle={item.content}
+							renderRightActions={() => (
+								<View style={{ backgroundColor: "red", width: 70 }}></View>
+							)}
+						/>
+					)}
+					ItemSeparatorComponent={ListItemSeparator}
+					refreshing={refresh}
+					onRefresh={() => console.log}
+				/>
+			</Screen>
+		</>
 	);
 }
 
 const styles = StyleSheet.create({
 	screen: {
 		backgroundColor: colors.light,
+		marginTop: -40,
 	},
 });
