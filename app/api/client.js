@@ -2,9 +2,8 @@ import { create } from "apisauce";
 import cache from "../utility/cache";
 import authStorage from "../auth/storage";
 
-// baseURL: "http://127.0.0.1:9000/api",
 const apiClient = create({
-	baseURL: "http://192.168.1.102:9000/api",
+	baseURL: "https://done-with-it-api.onrender.com/api",
 });
 
 apiClient.addAsyncRequestTransform(async (req) => {
@@ -14,6 +13,7 @@ apiClient.addAsyncRequestTransform(async (req) => {
 });
 
 const get = apiClient.get;
+
 apiClient.get = async (url, params, axiosConfig) => {
 	const response = await get(url, params, axiosConfig);
 	const data = await cache.get(url);
