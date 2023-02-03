@@ -12,6 +12,7 @@ npm-debug.*
 *.orig.*
 web-build/
 android/app/build/
+android/.gradle/
 
 # macOS
 .DS_Store
